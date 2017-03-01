@@ -195,6 +195,12 @@ public class FloatingActionMenu extends ViewGroup {
         initMenuButtonAnimations(attr);
 
         attr.recycle();
+
+        // call onFinishInflate here, once we are not inflating the layout on react-native
+        bringChildToFront(mMenuButton);
+        bringChildToFront(mImageToggle);
+        mButtonsCount = getChildCount();
+        createLabels();
     }
 
     private void initMenuButtonAnimations(TypedArray attr) {
@@ -956,6 +962,64 @@ public class FloatingActionMenu extends ViewGroup {
 
     public int getMenuButtonColorRipple() {
         return mMenuColorRipple;
+    }
+
+    // Exposing some prop setters to use on react-native-nfab
+
+    public FloatingActionButton getMenuButton() {
+        return mMenuButton;
+    }
+
+    public void setButtonSpacing(int space) {
+        mButtonSpacing = space;
+    }
+
+    public void setLabelsPosition(int position) {
+        mLabelsPosition = position;
+    }
+
+    public void setLabelsMargin(int margin) {
+        mLabelsMargin = margin;
+    }
+
+    public void setLabelsPaddingTop(int padding) {
+        mLabelsPaddingTop = padding;
+    }
+
+    public void setLabelsPaddingRight(int padding) {
+        mLabelsPaddingRight = padding;
+    }
+
+    public void setLabelsPaddingBottom(int padding) {
+        mLabelsPaddingBottom = padding;
+    }
+
+    public void setLabelsPaddingLeft(int padding) {
+        mLabelsPaddingLeft = padding;
+    }
+
+    public void setLabelsPadding(int padding) {
+        this.initPadding(padding);
+    }
+
+    public void setLabelsShowShadow(boolean show) {
+        mLabelsShowShadow = show;
+    }
+
+    public void setLabelsSingleLine(boolean singleLine) {
+        mLabelsSingleLine = singleLine;
+    }
+
+    public void setLabelsEllipsize(int ellipsize) {
+        mLabelsEllipsize = ellipsize;
+    }
+
+    public void setLabelsMaxLines(int maxLines) {
+        mLabelsMaxLines = maxLines;
+    }
+
+    public void setOpenDirection(int openDirection) {
+        mOpenDirection = openDirection;
     }
 
     public void addMenuButton(FloatingActionButton fab) {
